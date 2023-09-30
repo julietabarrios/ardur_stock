@@ -33,14 +33,14 @@ const editStock = async (req,res)=>{
     }
 }
 
-// aca borrar no deberia ser por nombre sino por algun id de registro o combinacion de name comment y date 
+ 
 const removeStock = async (req,res)=>{
-    let {name,comment,date}= req.body 
+    let {name,comment}= req.body 
     
     try{
-        const findStock = await Stock.findOne({name,comment})
+        const findStock = await Stock.findOne({name:name, comment:comment})
         if (findStock){
-            await Stock.deleteOne({findStock})
+            await Stock.deleteOne(findStock._id)
             res.send({ok:true, message:"The register of stock was successfully removed"}) 
         }
         else{
