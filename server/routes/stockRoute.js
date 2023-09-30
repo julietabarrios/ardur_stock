@@ -4,6 +4,7 @@ router        = express.Router(),
 
 router.post('/add', controller.addStock)
 router.post('/edit', controller.editStock)
+router.post('/remove', controller.removeStock)
 router.get('/display', controller.displayAllStock)
 
 
