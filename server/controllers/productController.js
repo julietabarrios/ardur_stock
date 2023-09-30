@@ -1,15 +1,15 @@
 const Product = require('../models/product')
 
 const addProduct = async (req,res)=>{
-    let {name, description,limitBlack,limitRed}= req.body
-    if (!name|| !description || !limitBlack || !limitRed){
+    let {name, description,limitBlack,limitRed, measurementUnit}= req.body
+    if (!name|| !description || !limitBlack || !limitRed || !measurementUnit){
         return res.json({ ok: false, message: "All the fields are required" });}
     try{
         const findProduct = await Product.findOne({name})
         if(findProduct){
             res.send({ok:true, message:"The Product already exists"})}
         else{
-            await Product.create({name,description,limitBlack,limitRed});
+            await Product.create({name,description,limitBlack,limitRed, measurementUnit});
             res.send({ok:true, message:"The Product was successfully added"})
         }
     }
@@ -37,17 +37,17 @@ const removeProduct = async (req,res)=>{
 }
 
 const editProduct = async (req,res)=>{
-    let {name, newName, newDescription, newLimitRed, newLimitBlack}= req.body 
+    let {name, newName, newDescription, newLimitRed, newLimitBlack, newMeasurementUnit}= req.body 
     
     try{
         const findProduct = await Product.findOne({name})
         if (!findProduct){
             res.send({ok:true, message:"This Product is not registered"})
         }
-        else if (name == newName && findProduct.description == newDescription && findProduct.limitRed == newLimitRed && findProduct.limitBlack == newLimitBlack){ 
+        else if (name == newName && findProduct.description == newDescription && findProduct.limitRed == newLimitRed && findProduct.limitBlack == newLimitBlack && findProduct.measurementUnit == newMeasurementUnit){ 
           res.json({ok: true, message: "No change was made"});}
         else{
-            await Product.findOneAndUpdate({name}, {name: newName, description:newDescription, limitRed: newLimitRed, limitBlack:newLimitBlack})
+            await Product.findOneAndUpdate({name}, {name: newName, description:newDescription, limitRed: newLimitRed, limitBlack:newLimitBlack, measurementUnit: newMeasurementUnit})
             res.send({ok:true, message:"The Product was successfully updated"})   
         }
     }

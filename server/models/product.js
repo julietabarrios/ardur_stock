@@ -5,6 +5,7 @@ const productSchema = new mongoose.Schema({
   description: { type: String, required: true},
   limitRed: { type: Number, required: true},
   limitBlack: { type: Number, required: true},
+  measurementUnit: { type: String, required: true},
 },
 {strictQuery: false}
 );
