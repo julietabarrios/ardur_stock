@@ -22,7 +22,7 @@ async function connecting(){
 }
 
 app.use('/position', require('./routes/positionRoute'))
-app.use('/category', require('./routes/categoryRoute'))
+app.use('/product', require('./routes/productRoute'))
 
 
 
