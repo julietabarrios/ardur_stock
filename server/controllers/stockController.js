@@ -35,10 +35,10 @@ const editStock = async (req,res)=>{
 
  
 const removeStock = async (req,res)=>{
-    let {name,comment}= req.body 
+    let {name,comment, date}= req.body 
     
     try{
-        const findStock = await Stock.findOne({name:name, comment:comment})
+        const findStock = await Stock.findOne({name:name, comment:comment, date:date})
         if (findStock){
             await Stock.deleteOne(findStock._id)
             res.send({ok:true, message:"The register of stock was successfully removed"}) 
