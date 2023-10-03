@@ -24,6 +24,8 @@ async function connecting(){
 app.use('/position', require('./routes/positionRoute'))
 app.use('/product', require('./routes/productRoute'))
 app.use('/stock', require('./routes/stockRoute'))
+app.use('/', require('./routes/verify_token'))
+app.use('/user', require('./routes/loginRoute'))
 
 
 
